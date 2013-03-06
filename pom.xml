@@ -95,9 +95,14 @@
 	</dependencyManagement>
 	<dependencies>
 		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<version>1.0.1.Final</version>
+			<groupId>com.godmonth</groupId>
+			<artifactId>godmonth-commons</artifactId>
+			<version>0.5.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.godmonth</groupId>
+			<artifactId>godmonth-crud-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -167,11 +172,7 @@
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.godmonth</groupId>
-			<artifactId>godmonth-commons</artifactId>
-			<version>0.5.2-SNAPSHOT</version>
-		</dependency>
+
 	</dependencies>
 	<profiles>
 		<profile>
