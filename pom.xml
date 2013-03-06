@@ -23,9 +23,9 @@
 	</licenses>
 
 	<scm>
-		<connection>scm:git:git@github.com:godmonth/godmonth-crud-jpa.git/godmonth-crud-jpa</connection>
-		<developerConnection>scm:git:git@github.com:godmonth/godmonth-crud-jpa.git/godmonth-crud-jpa</developerConnection>
-		<url>http://godmonth@github.com/godmonth/godmonth-crud-jpa.git/godmonth-crud-jpa</url>
+		<connection>scm:git:git@github.com:godmonth/godmonth-crud-jpa.git</connection>
+		<developerConnection>scm:git:git@github.com:godmonth/godmonth-crud-jpa.git</developerConnection>
+		<url>https://github.com/godmonth/godmonth-crud-jpa</url>
 	</scm>
 	<build>
 		<plugins>
