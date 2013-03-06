@@ -13,8 +13,7 @@ import com.godmonth.crud.jpa.model.LongIdModel;
 import com.godmonth.crud.jpa.po.LongIdPo;
 import com.godmonth.util.dozer.DozerTransformer;
 
-public class CoffeeServiceImpl<MO extends LongIdModel, PO extends LongIdPo> implements CrudService<MO>,
-		InitializingBean {
+public class CrudServiceImpl<MO extends LongIdModel, PO extends LongIdPo> implements CrudService<MO>, InitializingBean {
 	private CrudDao<PO> crudDao;
 	private Mapper mapper;
 	private Transformer transformer;
@@ -39,9 +38,9 @@ public class CoffeeServiceImpl<MO extends LongIdModel, PO extends LongIdPo> impl
 
 	@Override
 	public MO get(Long id) {
-		PO coffee = crudDao.get(id);
-		if (coffee != null) {
-			return mapper.map(coffee, modelClass);
+		PO po = crudDao.get(id);
+		if (po != null) {
+			return mapper.map(po, modelClass);
 		} else {
 			return null;
 		}
@@ -50,10 +49,10 @@ public class CoffeeServiceImpl<MO extends LongIdModel, PO extends LongIdPo> impl
 	@Override
 	public List<MO> list() {
 		List<PO> list = crudDao.list();
-		List<MO> coffees = new ArrayList<MO>();
+		List<MO> models = new ArrayList<MO>();
 		if (CollectionUtils.isNotEmpty(list)) {
-			CollectionUtils.collect(list, transformer, coffees);
+			CollectionUtils.collect(list, transformer, models);
 		}
-		return coffees;
+		return models;
 	}
 }
