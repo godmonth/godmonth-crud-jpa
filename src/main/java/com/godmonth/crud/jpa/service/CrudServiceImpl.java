@@ -9,8 +9,9 @@ import org.dozer.Mapper;
 import org.springframework.beans.factory.InitializingBean;
 
 import com.godmonth.crud.jpa.dao.CrudDao;
-import com.godmonth.crud.jpa.model.LongIdModel;
 import com.godmonth.crud.jpa.po.LongIdPo;
+import com.godmonth.crud.model.LongIdModel;
+import com.godmonth.crud.service.CrudService;
 import com.godmonth.util.dozer.DozerTransformer;
 
 public class CrudServiceImpl<MO extends LongIdModel, PO extends LongIdPo> implements CrudService<MO>, InitializingBean {
