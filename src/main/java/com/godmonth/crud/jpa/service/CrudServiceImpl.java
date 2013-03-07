@@ -7,6 +7,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Transformer;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.godmonth.crud.jpa.dao.CrudDao;
 import com.godmonth.crud.jpa.po.LongIdPo;
@@ -26,12 +27,14 @@ public class CrudServiceImpl<MO extends LongIdModel, PO extends LongIdPo> implem
 		transformer = new DozerTransformer(mapper, modelClass);
 	}
 
+	@Transactional
 	@Override
 	public void save(MO t) {
 		PO c = mapper.map(t, poClass);
 		crudDao.persist(c);
 	}
 
+	@Transactional
 	@Override
 	public void delete(Long id) {
 		crudDao.delete(id);
