@@ -12,8 +12,8 @@ import com.godmonth.crud.jpa.po.LongIdPo;
 
 @Repository
 public class CrudDaoImpl<T extends LongIdPo> implements CrudDao<T> {
-	private EntityManager entityManager;
-	private Class<T> clazz;
+	protected EntityManager entityManager;
+	protected Class<T> clazz;
 
 	@Override
 	public void persist(T t) {
