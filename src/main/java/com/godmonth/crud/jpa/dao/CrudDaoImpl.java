@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.godmonth.crud.jpa.po.LongIdPo;
 
 @Repository
-public class CurdDaoImpl<T extends LongIdPo> implements CrudDao<T> {
+public class CrudDaoImpl<T extends LongIdPo> implements CrudDao<T> {
 	private EntityManager entityManager;
 	private Class<T> clazz;
 
