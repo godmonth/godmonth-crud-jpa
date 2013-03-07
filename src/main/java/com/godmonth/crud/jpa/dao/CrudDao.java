@@ -14,4 +14,6 @@ public interface CrudDao<T extends LongIdPo> {
 	T get(Long id);
 
 	List<T> list();
+
+	Class<T> getPoClass();
 }

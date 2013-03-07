@@ -19,7 +19,7 @@
 		</property>
 	</bean>
 	<bean id="userDao" class="com.godmonth.crud.jpa.dao.CrudDaoImpl"
-		p:clazz="com.godmonth.crud.jpa.User123" />
+		p:poClass="com.godmonth.crud.jpa.User123" />
 
 	<!-- <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" 
 		/> -->

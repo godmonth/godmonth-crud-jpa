@@ -13,7 +13,7 @@ import com.godmonth.crud.jpa.po.LongIdPo;
 @Repository
 public class CrudDaoImpl<T extends LongIdPo> implements CrudDao<T> {
 	protected EntityManager entityManager;
-	protected Class<T> clazz;
+	protected Class<T> poClass;
 
 	@Override
 	public void persist(T t) {
@@ -33,13 +33,13 @@ public class CrudDaoImpl<T extends LongIdPo> implements CrudDao<T> {
 
 	@Override
 	public T get(Long id) {
-		return entityManager.find(clazz, id);
+		return entityManager.find(poClass, id);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> list() {
-		return entityManager.createQuery("FROM " + clazz.getName()).getResultList();
+		return entityManager.createQuery("FROM " + poClass.getName()).getResultList();
 	}
 
 	@Required
@@ -48,8 +48,12 @@ public class CrudDaoImpl<T extends LongIdPo> implements CrudDao<T> {
 		this.entityManager = entityManager;
 	}
 
-	public void setClazz(Class<T> clazz) {
-		this.clazz = clazz;
+	public Class<T> getPoClass() {
+		return poClass;
+	}
+
+	public void setPoClass(Class<T> poClass) {
+		this.poClass = poClass;
 	}
 
 }

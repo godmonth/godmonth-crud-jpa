@@ -7,6 +7,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Transformer;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.godmonth.crud.jpa.dao.CrudDao;
@@ -19,7 +20,6 @@ public class CrudServiceImpl<MO extends LongIdModel, PO extends LongIdPo> implem
 	private CrudDao<PO> crudDao;
 	private Mapper mapper;
 	private Transformer transformer;
-	private Class<PO> poClass;
 	private Class<MO> modelClass;
 
 	@Override
@@ -30,7 +30,7 @@ public class CrudServiceImpl<MO extends LongIdModel, PO extends LongIdPo> implem
 	@Transactional
 	@Override
 	public void save(MO t) {
-		PO c = mapper.map(t, poClass);
+		PO c = mapper.map(t, crudDao.getPoClass());
 		crudDao.persist(c);
 	}
 
@@ -59,4 +59,20 @@ public class CrudServiceImpl<MO extends LongIdModel, PO extends LongIdPo> implem
 		}
 		return models;
 	}
+
+	@Required
+	public void setCrudDao(CrudDao<PO> crudDao) {
+		this.crudDao = crudDao;
+	}
+
+	@Required
+	public void setMapper(Mapper mapper) {
+		this.mapper = mapper;
+	}
+
+	@Required
+	public void setModelClass(Class<MO> modelClass) {
+		this.modelClass = modelClass;
+	}
+
 }
