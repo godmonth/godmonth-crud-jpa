@@ -29,7 +29,15 @@ public class CrudServiceImpl<MO extends LongIdModel, PO extends LongIdPo> implem
 
 	@Transactional
 	@Override
-	public void save(MO t) {
+	public MO save(MO t) {
+		PO c = mapper.map(t, crudDao.getPoClass());
+		crudDao.persist(c);
+		return mapper.map(c, modelClass);
+	}
+
+	@Transactional
+	@Override
+	public void save2(MO t) {
 		PO c = mapper.map(t, crudDao.getPoClass());
 		crudDao.persist(c);
 	}
