@@ -49,6 +49,7 @@ public class CrudServiceImpl<MO extends LongIdModel, PO extends LongIdPo> implem
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public MO get(Long id) {
 		PO po = crudDao.get(id);
 		if (po != null) {
@@ -59,6 +60,7 @@ public class CrudServiceImpl<MO extends LongIdModel, PO extends LongIdPo> implem
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<MO> list() {
 		List<PO> list = crudDao.list();
 		List<MO> models = new ArrayList<MO>();
