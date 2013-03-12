@@ -17,10 +17,10 @@ import com.godmonth.crud.service.CrudService;
 import com.godmonth.util.dozer.DozerTransformer;
 
 public class CrudServiceImpl<MO extends LongIdModel, PO extends LongIdPo> implements CrudService<MO>, InitializingBean {
-	private CrudDao<PO> crudDao;
-	private Mapper mapper;
-	private Transformer transformer;
-	private Class<MO> modelClass;
+	protected CrudDao<PO> crudDao;
+	protected Mapper mapper;
+	protected Transformer transformer;
+	protected Class<MO> modelClass;
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
@@ -31,7 +31,7 @@ public class CrudServiceImpl<MO extends LongIdModel, PO extends LongIdPo> implem
 	@Override
 	public MO save(MO t) {
 		PO c = mapper.map(t, crudDao.getPoClass());
-		crudDao.persist(c);
+		crudDao.merge(c);
 		return mapper.map(c, modelClass);
 	}
 
@@ -39,7 +39,7 @@ public class CrudServiceImpl<MO extends LongIdModel, PO extends LongIdPo> implem
 	@Override
 	public void save2(MO t) {
 		PO c = mapper.map(t, crudDao.getPoClass());
-		crudDao.persist(c);
+		crudDao.merge(c);
 	}
 
 	@Transactional
