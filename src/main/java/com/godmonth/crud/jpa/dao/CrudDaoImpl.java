@@ -3,6 +3,7 @@ package com.godmonth.crud.jpa.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Required;
@@ -33,7 +34,11 @@ public abstract class CrudDaoImpl<T extends LongIdPo> implements CrudDao<T> {
 
 	@Override
 	public T get(Long id) {
-		return entityManager.find(poClass, id);
+		try {
+			return entityManager.find(poClass, id);
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@SuppressWarnings("unchecked")
