@@ -35,7 +35,7 @@ public class LongIdPo implements Serializable {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("id", this.id).toString();
+		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("id", this.getId()).toString();
 	}
 
 }

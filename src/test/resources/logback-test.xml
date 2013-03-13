@@ -5,6 +5,9 @@
 			<pattern><![CDATA[%d{HH:mm:ss.SSS} %-5level %logger{10}[%method,%line] - %msg%n]]></pattern>
 		</layout>
 	</appender>
+	<logger name="net.sf.ehcache">
+		<level value="debug" />
+	</logger>
 	<logger name="jdbc.sqlonly">
 		<level value="info" />
 	</logger>

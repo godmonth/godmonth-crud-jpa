@@ -1,4 +1,4 @@
-package com.godmonth.crud.jpa;
+package com.godmonth.crud.test;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -26,7 +26,7 @@ public class User123 extends LongIdPo {
 	 */
 	public String toString() {
 		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).appendSuper(super.toString())
-				.append("name", this.name).toString();
+				.append("name", this.getName()).toString();
 	}
 
 }

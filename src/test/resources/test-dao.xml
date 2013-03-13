@@ -9,7 +9,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 	<bean id="myEmf"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-		p:dataSource-ref="dataSource" p:packagesToScan="com.godmonth.crud.jpa"
+		p:dataSource-ref="dataSource" p:packagesToScan="com.godmonth.crud.test"
 		destroy-method="destroy">
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
@@ -18,8 +18,8 @@
 			<util:properties location="classpath:/hibernate.h2.properties" />
 		</property>
 	</bean>
-	<bean id="userDao" class="com.godmonth.crud.jpa.UserDao" />
-	<bean id="carDao" class="com.godmonth.crud.jpa.CarDao" />
+	<bean id="userDao" class="com.godmonth.crud.test.UserDao" />
+	<bean id="carDao" class="com.godmonth.crud.test.CarDao" />
 
 	<!-- <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" 
 		/> -->
@@ -30,5 +30,7 @@
 		p:entityManagerFactory-ref="myEmf" />
 	<tx:annotation-driven transaction-manager="txManager"
 		proxy-target-class="true" />
-
+	<context:component-scan base-package="com.godmonth.crud.test" />
+	<bean id="carService" class="com.godmonth.crud.test.CarService"
+		p:carDao-ref="carDao" p:userDao-ref="userDao" />
 </beans>

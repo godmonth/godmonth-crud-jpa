@@ -1,4 +1,4 @@
-package com.godmonth.crud.jpa;
+package com.godmonth.crud.test;
 
 import com.godmonth.crud.jpa.dao.CrudDaoImpl;
 

@@ -1,4 +1,4 @@
-package com.godmonth.crud.jpa;
+package com.godmonth.crud.test;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
