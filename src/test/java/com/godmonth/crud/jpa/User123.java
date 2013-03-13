@@ -25,8 +25,8 @@ public class User123 extends LongIdPo {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("name", this.name)
-				.append("id", this.getId()).toString();
+		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).appendSuper(super.toString())
+				.append("name", this.name).toString();
 	}
 
 }

@@ -18,8 +18,8 @@
 			<util:properties location="classpath:/hibernate.h2.properties" />
 		</property>
 	</bean>
-	<bean id="userDao" class="com.godmonth.crud.jpa.dao.CrudDaoImpl"
-		p:poClass="com.godmonth.crud.jpa.User123" />
+	<bean id="userDao" class="com.godmonth.crud.jpa.UserDao" />
+	<bean id="carDao" class="com.godmonth.crud.jpa.CarDao" />
 
 	<!-- <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" 
 		/> -->

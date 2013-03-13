@@ -8,15 +8,15 @@ import org.springframework.test.context.testng.AbstractTransactionalTestNGSpring
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.testng.annotations.Test;
 
-import com.godmonth.crud.jpa.dao.CrudDao;
-
 @ContextConfiguration({ "classpath:/test-dao.xml", "classpath*:/test-env.xml" })
 @TransactionConfiguration(transactionManager = "txManager", defaultRollback = false)
 public class UserDaoTest extends AbstractTransactionalTestNGSpringContextTests {
 	@Autowired
-	private CrudDao<User123> userDao;
+	private UserDao userDao;
+	@Autowired
+	private CarDao carDao;
 
-	@Test
+	@Test(enabled = false)
 	public void save() {
 		System.out.println(userDao);
 		User123 u = new User123();
@@ -33,8 +33,18 @@ public class UserDaoTest extends AbstractTransactionalTestNGSpringContextTests {
 	}
 
 	@Test
-	public void getNull() {
-		User123 user123 = userDao.get(331l);
+	public void many() {
+		User123 u = new User123();
+		u.setName("fff");
+		userDao.persist(u);
+		Car car = new Car();
+		car.setUser123(u);
+		carDao.merge(car);
+	}
+
+	@Test(dependsOnMethods = "many")
+	public void get() {
+		System.out.println(carDao.get(1l));
 	}
 
 }

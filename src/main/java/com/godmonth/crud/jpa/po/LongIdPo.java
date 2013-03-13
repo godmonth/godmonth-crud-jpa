@@ -14,6 +14,13 @@ public class LongIdPo implements Serializable {
 
 	private Long id;
 
+	public LongIdPo() {
+	}
+
+	public LongIdPo(Long id) {
+		this.id = id;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
