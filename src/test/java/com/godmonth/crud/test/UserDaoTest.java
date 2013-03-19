@@ -16,7 +16,7 @@ public class UserDaoTest extends AbstractTransactionalTestNGSpringContextTests {
 	@Autowired
 	private CarDao carDao;
 
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void save() {
 		System.out.println(userDao);
 		User123 u = new User123();
