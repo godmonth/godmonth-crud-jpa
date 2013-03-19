@@ -51,7 +51,10 @@ public class CrudServiceImpl<MO extends LongIdModel, PO extends LongIdPo> implem
 	@Override
 	@Transactional(readOnly = true)
 	public MO get(Long id) {
-		PO po = crudDao.get(id);
+		return transformGet(crudDao.get(id));
+	}
+
+	protected MO transformGet(PO po) {
 		if (po != null) {
 			return mapper.map(po, modelClass);
 		} else {
@@ -62,12 +65,22 @@ public class CrudServiceImpl<MO extends LongIdModel, PO extends LongIdPo> implem
 	@Override
 	@Transactional(readOnly = true)
 	public List<MO> list() {
-		List<PO> list = crudDao.list();
-		List<MO> models = new ArrayList<MO>();
-		if (CollectionUtils.isNotEmpty(list)) {
-			CollectionUtils.collect(list, transformer, models);
+		return transformList(crudDao.list());
+	}
+
+	@SuppressWarnings("unchecked")
+	protected List<MO> transformList(List<PO> input) {
+		return transformList(input, transformer);
+	}
+
+	protected static List transformList(List input, Transformer transformer) {
+		if (CollectionUtils.isNotEmpty(input)) {
+			List output = new ArrayList();
+			CollectionUtils.collect(input, transformer, output);
+			return output;
+		} else {
+			return null;
 		}
-		return models;
 	}
 
 	@Required
