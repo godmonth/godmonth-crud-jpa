@@ -1,5 +1,6 @@
 package com.godmonth.crud.test;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -13,6 +14,7 @@ import com.godmonth.crud.jpa.po.LongIdPo;
 public class User123 extends LongIdPo {
 	private String name;
 
+	@Column(unique = true, nullable = false)
 	public String getName() {
 		return name;
 	}

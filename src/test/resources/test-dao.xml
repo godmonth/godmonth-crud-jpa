@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
@@ -17,8 +17,12 @@
 		<property name="jpaProperties">
 			<util:properties location="classpath:/hibernate.h2.properties" />
 		</property>
-	</bean>
-	<bean id="userDao" class="com.godmonth.crud.test.UserDao" />
+	</bean>  <!-- detect les @persistentContext in dao -->
+	<bean
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+
+	<bean id="userDao" class="com.godmonth.crud.test.UserDaoImpl" />
 	<bean id="carDao" class="com.godmonth.crud.test.CarDao" />
 
 	<!-- <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" 
@@ -33,4 +37,11 @@
 	<context:component-scan base-package="com.godmonth.crud.test" />
 	<bean id="carService" class="com.godmonth.crud.test.CarService"
 		p:carDao-ref="carDao" p:userDao-ref="userDao" />
+
+	<bean id="userService" class="com.godmonth.crud.jpa.service.CrudServiceImpl"
+		p:crudDao-ref="userDao" p:modelClass="com.godmonth.crud.test.UserModel">
+		<property name="mapper">
+			<bean class="org.dozer.DozerBeanMapper" />
+		</property>
+	</bean>
 </beans>

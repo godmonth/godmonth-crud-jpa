@@ -2,19 +2,22 @@ package com.godmonth.crud.test;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.testng.annotations.Test;
 
+import com.godmonth.crud.jpa.dao.CrudDao;
+
 @ContextConfiguration({ "classpath:/test-dao.xml", "classpath*:/test-env.xml" })
 @TransactionConfiguration(transactionManager = "txManager", defaultRollback = false)
 public class UserDaoTest extends AbstractTransactionalTestNGSpringContextTests {
-	@Autowired
-	private UserDao userDao;
-	@Autowired
-	private CarDao carDao;
+	@Resource(name = "userDao")
+	private CrudDao<User123> userDao;
+	@Resource(name = "carDao")
+	private CrudDao<Car> carDao;
 
 	@Test(enabled = true)
 	public void save() {
@@ -24,9 +27,12 @@ public class UserDaoTest extends AbstractTransactionalTestNGSpringContextTests {
 		userDao.persist(u);
 
 		User123 u2 = new User123();
-		u2.setName("eee");
-		userDao.persist(u2);
-
+		u2.setName("www");
+		try {
+			userDao.persist(u2);
+		} catch (Exception e) {
+			System.out.println(e.getClass().getName());
+		}
 		List<User123> list = userDao.list();
 		System.out.println(list.size());
 		System.out.println(list);
@@ -35,7 +41,7 @@ public class UserDaoTest extends AbstractTransactionalTestNGSpringContextTests {
 	@Test
 	public void many() {
 		User123 u = new User123();
-		u.setName("fff");
+		u.setName("fff22");
 		userDao.persist(u);
 		Car car = new Car();
 		car.setUser123(u);
