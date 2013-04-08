@@ -7,7 +7,7 @@ import com.godmonth.crud.jpa.po.LongIdPo;
 public interface CrudDao<T extends LongIdPo> {
 	void persist(T t);
 
-	void merge(T t);
+	T merge(T t);
 
 	void delete(Long id);
 

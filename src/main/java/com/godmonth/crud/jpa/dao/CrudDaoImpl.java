@@ -22,8 +22,8 @@ public abstract class CrudDaoImpl<T extends LongIdPo> implements CrudDao<T> {
 	}
 
 	@Override
-	public void merge(T t) {
-		entityManager.merge(t);
+	public T merge(T t) {
+		return entityManager.merge(t);
 	}
 
 	@Override
