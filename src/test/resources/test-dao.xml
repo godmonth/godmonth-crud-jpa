@@ -19,14 +19,13 @@
 		</property>
 	</bean>  <!-- detect les @persistentContext in dao -->
 	<bean
-		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"
+		p:proxyTargetClass="true" />
 
 
-	<bean id="userDao" class="com.godmonth.crud.test.UserDaoImpl" />
+	<bean id="userDao" class="com.godmonth.crud.test.UserDao" />
 	<bean id="carDao" class="com.godmonth.crud.test.CarDao" />
 
-	<!-- <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" 
-		/> -->
 	<context:annotation-config />
 
 
