@@ -31,7 +31,7 @@ public class CrudServiceImpl<MO extends LongIdModel, PO extends LongIdPo> implem
 	@Override
 	public MO saveAndReturn(MO t) {
 		PO c = mapper.map(t, crudDao.getPoClass());
-		crudDao.merge(c);
+		c = crudDao.merge(c);
 		return mapper.map(c, modelClass);
 	}
 
